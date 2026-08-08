@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Brain Battle | Login</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-body">
+
+    <div class="auth-card" id="authCard">
+
+        <!-- ================= SIGN IN ================= -->
+        <section class="auth-form sign-in">
+
+            <div class="form-inner">
+
+                <h1>Sign in</h1>
+
+                <div class="socials">
+                    <span>f</span>
+                    <span>G+</span>
+                    <span>in</span>
+                </div>
+
+                <p class="muted">
+                    or use your account
+                </p>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Email"
+                >
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Password"
+                >
+
+                <a
+                    href="#"
+                    class="forgot"
+                    onclick="forgotPassword()"
+                >
+                    Forgot your password?
+                </a>
+
+                <button
+                    class="btn red"
+                    onclick="login()"
+                >
+                    SIGN IN
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= RED PANEL ================= -->
+        <section class="auth-panel">
+
+            <!-- SIGN UP PANEL -->
+            <div class="panel-content panel-signup">
+
+                <h2>Hello, Friend!</h2>
+
+                <p>
+                    Enter your personal details and start
+                    <br>
+                    your journey with us
+                </p>
+
+                <button
+                    class="btn outline"
+                    onclick="showSignup()"
+                >
+                    SIGN UP
+                </button>
+
+            </div>
+
+
+            <!-- SIGN IN PANEL -->
+            <div class="panel-content panel-back">
+
+                <h2>Welcome Back!</h2>
+
+                <p>
+                    To keep connected with us please login
+                    <br>
+                    with your personal info
+                </p>
+
+                <button
+                    class="btn outline"
+                    onclick="showSignin()"
+                >
+                    SIGN IN
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SIGN UP ================= -->
+        <section class="auth-form sign-up">
+
+            <div class="form-inner">
+
+                <h1>Create Account</h1>
+
+                <div class="socials">
+                    <span>f</span>
+                    <span>G+</span>
+                    <span>in</span>
+                </div>
+
+                <p class="muted">
+                    or use your email for registration
+                </p>
+
+                <input
+                    type="text"
+                    id="signupName"
+                    placeholder="Name"
+                >
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Email"
+                >
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Password"
+                >
+
+                <button
+                    class="btn red"
+                    onclick="signup()"
+                >
+                    SIGN UP
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

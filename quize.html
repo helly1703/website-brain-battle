@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Brain Battle | Quiz</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body class="quiz-body">
+
+
+    <!-- =====================================
+         TOP BAR
+    ====================================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+            🧠 Brain Battle
+        </div>
+
+
+        <div class="quiz-meta">
+
+            <span id="categoryLabel">
+                C Programming
+            </span>
+
+
+            <span id="timer">
+                00:30
+            </span>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================
+         QUIZ SECTION
+    ====================================== -->
+
+    <main class="quiz-wrap">
+
+        <div class="quiz-card">
+
+
+            <!-- =================================
+                 QUESTION PROGRESS
+            ================================== -->
+
+            <div class="progress-row">
+
+                <span id="questionNo">
+                    Question 1
+                </span>
+
+
+                <span id="progressText">
+                    1 / 10
+                </span>
+
+            </div>
+
+
+
+            <!-- PROGRESS BAR -->
+
+            <div class="progress">
+
+                <div
+                    id="progressBar"
+                    style="width: 10%;"
+                >
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 QUESTION
+            ================================== -->
+
+            <h2 id="question">
+                Loading question...
+            </h2>
+
+
+
+            <!-- =================================
+                 ANSWER OPTIONS
+            ================================== -->
+
+            <div
+                id="answers"
+                class="answers"
+            >
+            </div>
+
+
+
+            <!-- =================================
+                 ACTION BUTTON
+            ================================== -->
+
+            <div class="quiz-actions">
+
+                <button
+                    class="btn purple"
+                    id="nextBtn"
+                    onclick="nextQuestion()"
+                >
+                    Next Question
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

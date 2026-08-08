@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Brain Battle | Quiz Configuration</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body class="quiz-body">
+
+
+    <!-- =====================================
+         TOP NAVIGATION
+    ====================================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+            🧠 Brain Battle
+        </div>
+
+
+        <button
+            class="logout"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </header>
+
+
+
+    <!-- =====================================
+         CONFIGURATION
+    ====================================== -->
+
+    <main class="config-wrap">
+
+        <div class="config-card">
+
+
+            <!-- TITLE -->
+
+            <h1>
+                Quiz Configuration
+            </h1>
+
+
+
+            <!-- =================================
+                 CATEGORY
+            ================================== -->
+
+            <h3>
+                Select Category
+            </h3>
+
+
+            <div class="option-grid category-grid">
+
+
+                <button
+                    class="option active"
+                    data-category="C Programming"
+                >
+                    💻 C Programming
+                </button>
+
+
+                <button
+                    class="option"
+                    data-category="Data Structures"
+                >
+                    🌳 Data Structures
+                </button>
+
+
+                <button
+                    class="option"
+                    data-category="Java"
+                >
+                    ☕ Java
+                </button>
+
+
+                <button
+                    class="option"
+                    data-category="DBMS"
+                >
+                    🗄️ DBMS
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 NUMBER OF QUESTIONS
+            ================================== -->
+
+            <h3>
+                No. of Questions
+            </h3>
+
+
+            <div class="option-grid count-grid">
+
+
+                <button
+                    class="option"
+                    data-count="5"
+                >
+                    5
+                </button>
+
+
+                <button
+                    class="option active"
+                    data-count="10"
+                >
+                    10
+                </button>
+
+
+                <button
+                    class="option"
+                    data-count="15"
+                >
+                    15
+                </button>
+
+
+                <button
+                    class="option"
+                    data-count="20"
+                >
+                    20
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 START QUIZ
+            ================================== -->
+
+            <button
+                class="btn purple big"
+                onclick="startQuiz()"
+            >
+                🚀 Start Quiz
+            </button>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
