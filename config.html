@@ -2,180 +2,135 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Brain Battle | Quiz Configuration</title>
 
-    <link rel="stylesheet" href="style.css">
-
+    <!-- IMPORTANT -->
+    <link rel="stylesheet" href="./style.css">
 </head>
-
 
 <body class="quiz-body">
 
-
-    <!-- =====================================
-         TOP NAVIGATION
-    ====================================== -->
-
+    <!-- NAVBAR -->
     <header class="topbar">
 
         <div class="brand">
             🧠 Brain Battle
         </div>
 
-
-        <button
-            class="logout"
-            onclick="logout()"
-        >
+        <button class="logout" onclick="logout()">
             Logout
         </button>
 
     </header>
 
 
-
-    <!-- =====================================
-         CONFIGURATION
-    ====================================== -->
-
+    <!-- CONFIGURATION -->
     <main class="config-wrap">
 
         <div class="config-card">
 
+            <h1>Quiz Configuration</h1>
 
-            <!-- TITLE -->
-
-            <h1>
-                Quiz Configuration
-            </h1>
-
+            <p class="config-subtitle">
+                Customize your quiz and test your knowledge!
+            </p>
 
 
-            <!-- =================================
-                 CATEGORY
-            ================================== -->
+            <!-- CATEGORY -->
 
-            <h3>
-                Select Category
-            </h3>
-
+            <h3>Select Category</h3>
 
             <div class="option-grid category-grid">
 
-
                 <button
+                    type="button"
                     class="option active"
-                    data-category="C Programming"
-                >
+                    data-category="C Programming">
                     💻 C Programming
                 </button>
 
-
                 <button
+                    type="button"
                     class="option"
-                    data-category="Data Structures"
-                >
+                    data-category="Data Structures">
                     🌳 Data Structures
                 </button>
 
-
                 <button
+                    type="button"
                     class="option"
-                    data-category="Java"
-                >
+                    data-category="Java">
                     ☕ Java
                 </button>
 
-
                 <button
+                    type="button"
                     class="option"
-                    data-category="DBMS"
-                >
+                    data-category="DBMS">
                     🗄️ DBMS
                 </button>
 
-
             </div>
 
 
+            <!-- NUMBER OF QUESTIONS -->
 
-            <!-- =================================
-                 NUMBER OF QUESTIONS
-            ================================== -->
-
-            <h3>
-                No. of Questions
-            </h3>
-
+            <h3>No. of Questions</h3>
 
             <div class="option-grid count-grid">
 
-
                 <button
+                    type="button"
                     class="option"
-                    data-count="5"
-                >
+                    data-count="5">
                     5
                 </button>
 
-
                 <button
+                    type="button"
                     class="option active"
-                    data-count="10"
-                >
+                    data-count="10">
                     10
                 </button>
 
-
                 <button
+                    type="button"
                     class="option"
-                    data-count="15"
-                >
+                    data-count="15">
                     15
                 </button>
 
-
                 <button
+                    type="button"
                     class="option"
-                    data-count="20"
-                >
+                    data-count="20">
                     20
                 </button>
-
 
             </div>
 
 
-
-            <!-- =================================
-                 START QUIZ
-            ================================== -->
+            <!-- START -->
 
             <button
+                type="button"
                 class="btn purple big"
-                onclick="startQuiz()"
-            >
-                🚀 Start Quiz
-            </button>
+                onclick="startQuiz()">
 
+                🚀 Start Quiz
+
+            </button>
 
         </div>
 
     </main>
 
 
-
-    <!-- JAVASCRIPT -->
-
-    <script src="script.js"></script>
+    <!-- IMPORTANT -->
+    <script src="./script.js"></script>
 
 </body>
 

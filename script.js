@@ -1,53 +1,48 @@
-/* =========================================
-   BRAIN BATTLE - LOGIN / SIGNUP JAVASCRIPT
-========================================= */
+/* =====================================================
+   BRAIN BATTLE
+   COMPLETE JAVASCRIPT
+===================================================== */
 
 
-/* =========================================
-   SHOW SIGN UP PAGE
-========================================= */
+/* =====================================================
+   LOGIN / SIGNUP
+===================================================== */
 
 function showSignup() {
 
-    const authCard = document.getElementById("authCard");
+    const card = document.getElementById("authCard");
 
-    authCard.classList.add("signup-mode");
+    if (card) {
+        card.classList.add("signup-mode");
+    }
 
 }
 
-
-/* =========================================
-   SHOW SIGN IN PAGE
-========================================= */
 
 function showSignin() {
 
-    const authCard = document.getElementById("authCard");
+    const card = document.getElementById("authCard");
 
-    authCard.classList.remove("signup-mode");
+    if (card) {
+        card.classList.remove("signup-mode");
+    }
 
 }
 
-
-/* =========================================
-   SIGN UP
-========================================= */
 
 function signup() {
 
     const name =
-        document.getElementById("signupName").value.trim();
+        document.getElementById("signupName")?.value.trim();
 
     const email =
-        document.getElementById("signupEmail").value.trim();
+        document.getElementById("signupEmail")?.value.trim();
 
     const password =
-        document.getElementById("signupPassword").value;
+        document.getElementById("signupPassword")?.value;
 
 
-    /* Check empty fields */
-
-    if (name === "" || email === "" || password === "") {
+    if (!name || !email || !password) {
 
         alert("Please fill all fields.");
 
@@ -55,17 +50,13 @@ function signup() {
     }
 
 
-    /* Check email */
-
     if (!email.includes("@")) {
 
-        alert("Please enter a valid email address.");
+        alert("Please enter a valid email.");
 
         return;
     }
 
-
-    /* Check password */
 
     if (password.length < 4) {
 
@@ -74,8 +65,6 @@ function signup() {
         return;
     }
 
-
-    /* Save user */
 
     const user = {
 
@@ -95,59 +84,40 @@ function signup() {
 
 
     alert(
-        "Account created successfully! 🎉\n\nNow you can Sign In."
+        "Account created successfully! 🎉"
     );
 
-
-    /* Clear fields */
-
-    document.getElementById("signupName").value = "";
-    document.getElementById("signupEmail").value = "";
-    document.getElementById("signupPassword").value = "";
-
-
-    /* Go back to sign in */
 
     showSignin();
 
 }
 
 
-/* =========================================
-   SIGN IN
-========================================= */
-
 function login() {
 
     const email =
-        document.getElementById("loginEmail").value.trim();
+        document.getElementById("loginEmail")?.value.trim();
 
     const password =
-        document.getElementById("loginPassword").value;
+        document.getElementById("loginPassword")?.value;
 
 
-    /* Check empty fields */
+    if (!email || !password) {
 
-    if (email === "" || password === "") {
-
-        alert("Please enter your email and password.");
+        alert("Please enter email and password.");
 
         return;
     }
 
 
-    /* Get saved user */
-
     const savedUser =
         localStorage.getItem("brainBattleUser");
 
 
-    /* If no account exists */
-
     if (!savedUser) {
 
         alert(
-            "No account found!\n\nPlease create an account first."
+            "Please create an account first."
         );
 
         showSignup();
@@ -156,17 +126,14 @@ function login() {
     }
 
 
-    const user = JSON.parse(savedUser);
+    const user =
+        JSON.parse(savedUser);
 
-
-    /* Check login details */
 
     if (
         email === user.email &&
         password === user.password
     ) {
-
-        /* Login successful */
 
         localStorage.setItem(
             "brainBattleLoggedIn",
@@ -180,29 +147,19 @@ function login() {
         );
 
 
-        alert(
-            "Welcome " + user.name + "! 🧠\n\nLogin successful."
-        );
-
-
-        /* Open Quiz Configuration */
-
-        window.location.href = "config.html";
+        window.location.href =
+            "config.html";
 
     } else {
 
         alert(
-            "Invalid email or password.\n\nPlease try again."
+            "Invalid email or password."
         );
 
     }
 
 }
 
-
-/* =========================================
-   FORGOT PASSWORD
-========================================= */
 
 function forgotPassword() {
 
@@ -212,181 +169,23 @@ function forgotPassword() {
 
     if (!savedUser) {
 
-        alert(
-            "No account has been created yet."
-        );
+        alert("No account found.");
 
         return;
     }
 
 
-    const user = JSON.parse(savedUser);
+    const user =
+        JSON.parse(savedUser);
 
 
     alert(
-        "Your registered email is:\n\n" +
-        user.email +
-        "\n\nFor this demo, your password is:\n\n" +
-        user.password
+        "Your registered email:\n" +
+        user.email
     );
 
 }
 
-
-/* =========================================
-   SOCIAL BUTTONS
-========================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        const socials =
-            document.querySelectorAll(".socials span");
-
-
-        socials.forEach(function (social) {
-
-            social.addEventListener(
-                "click",
-                function () {
-
-                    alert(
-                        "Social login is not connected in this demo."
-                    );
-
-                }
-            );
-
-        });
-
-    }
-);
-/* =========================================
-   QUIZ CONFIGURATION
-========================================= */
-
-let selectedCategory = "C Programming";
-
-let selectedCount = 10;
-
-
-/* =========================================
-   CATEGORY SELECTION
-========================================= */
-
-if (
-    document.querySelectorAll("[data-category]").length > 0
-) {
-
-    document
-        .querySelectorAll("[data-category]")
-        .forEach(function(button) {
-
-            button.addEventListener(
-                "click",
-                function() {
-
-                    document
-                        .querySelectorAll("[data-category]")
-                        .forEach(function(item) {
-
-                            item.classList.remove("active");
-
-                        });
-
-
-                    button.classList.add("active");
-
-
-                    selectedCategory =
-                        button.getAttribute(
-                            "data-category"
-                        );
-
-                }
-            );
-
-        });
-
-}
-
-
-
-/* =========================================
-   QUESTION COUNT
-========================================= */
-
-if (
-    document.querySelectorAll("[data-count]").length > 0
-) {
-
-    document
-        .querySelectorAll("[data-count]")
-        .forEach(function(button) {
-
-            button.addEventListener(
-                "click",
-                function() {
-
-                    document
-                        .querySelectorAll("[data-count]")
-                        .forEach(function(item) {
-
-                            item.classList.remove("active");
-
-                        });
-
-
-                    button.classList.add("active");
-
-
-                    selectedCount =
-                        parseInt(
-                            button.getAttribute(
-                                "data-count"
-                            )
-                        );
-
-                }
-            );
-
-        });
-
-}
-
-
-
-/* =========================================
-   START QUIZ
-========================================= */
-
-function startQuiz() {
-
-    const quizConfig = {
-
-        category: selectedCategory,
-
-        count: selectedCount
-
-    };
-
-
-    localStorage.setItem(
-        "brainBattleConfig",
-        JSON.stringify(quizConfig)
-    );
-
-
-    window.location.href = "quiz.html";
-
-}
-
-
-
-/* =========================================
-   LOGOUT
-========================================= */
 
 function logout() {
 
@@ -398,14 +197,12 @@ function logout() {
         "index.html";
 
 }
-/* =========================================
-   BRAIN BATTLE QUIZ
-========================================= */
 
 
-/* =========================================
+
+/* =====================================================
    QUESTIONS
-========================================= */
+===================================================== */
 
 const QUESTIONS = {
 
@@ -413,628 +210,457 @@ const QUESTIONS = {
 
         {
             q: "Which header file is required for printf()?",
-
             a: [
                 "#include <math.h>",
                 "#include <stdio.h>",
                 "#include <stdlib.h>",
                 "#include <string.h>"
             ],
-
             c: 1
         },
 
-
         {
-            q: "What is the correct way to declare an integer variable?",
-
+            q: "Which data type is used to store a single character?",
             a: [
-                "int x;",
-                "integer x;",
-                "x int;",
-                "num x;"
+                "int",
+                "float",
+                "char",
+                "double"
             ],
-
-            c: 0
-        },
-
-
-        {
-            q: "What is the output of printf(\"%d\", 10 + 20)?",
-
-            a: [
-                "10",
-                "20",
-                "30",
-                "Error"
-            ],
-
             c: 2
         },
 
-
         {
-            q: "Which operator is used for the remainder (modulus)?",
-
+            q: "Which operator is used to find remainder?",
             a: [
                 "/",
                 "*",
                 "%",
-                "//"
+                "+"
             ],
-
             c: 2
         },
 
-
         {
-            q: "Which loop is guaranteed to execute at least once?",
-
+            q: "Which loop executes at least once?",
             a: [
                 "for",
                 "while",
                 "do...while",
-                "None of the above"
+                "if"
             ],
-
             c: 2
         },
 
-
         {
-            q: "What is the output of int a = 5; printf(\"%d\", a++);?",
-
+            q: "Which keyword is used to exit a loop?",
             a: [
-                "5",
-                "6",
-                "Error",
-                "4"
+                "continue",
+                "break",
+                "stop",
+                "exit"
             ],
-
-            c: 0
-        },
-
-
-        {
-            q: "Which data type stores a single character?",
-
-            a: [
-                "string",
-                "char",
-                "character",
-                "text"
-            ],
-
             c: 1
         },
 
-
         {
-            q: "Which symbol is used to access the value stored at a pointer?",
-
+            q: "Which symbol is used to get the address of a variable?",
             a: [
-                "&",
                 "*",
+                "&",
                 "#",
                 "%"
             ],
-
             c: 1
         },
 
+        {
+            q: "Which function is used to read formatted input?",
+            a: [
+                "printf()",
+                "scanf()",
+                "getchar()",
+                "puts()"
+            ],
+            c: 1
+        },
 
         {
-            q: "If x = 2 and if(x == 2), what is printed?",
-
+            q: "What is the correct declaration of an integer?",
             a: [
-                "Yes",
-                "No",
-                "Error",
-                "Nothing"
+                "integer x;",
+                "int x;",
+                "x int;",
+                "number x;"
             ],
+            c: 1
+        },
 
+        {
+            q: "Which keyword is used to return a value from a function?",
+            a: [
+                "break",
+                "continue",
+                "return",
+                "send"
+            ],
+            c: 2
+        },
+
+        {
+            q: "Array indexing in C starts from:",
+            a: [
+                "0",
+                "1",
+                "-1",
+                "2"
+            ],
             c: 0
         },
 
+        {
+            q: "Which is a valid C comment?",
+            a: [
+                "// comment",
+                "<!-- comment -->",
+                "# comment",
+                "** comment"
+            ],
+            c: 0
+        },
 
         {
-            q: "Which keyword is used to exit a loop immediately?",
-
+            q: "Which operator represents logical AND?",
             a: [
-                "continue",
-                "exit",
-                "break",
-                "return"
+                "&",
+                "&&",
+                "||",
+                "!"
             ],
+            c: 1
+        },
 
+        {
+            q: "Which function is used to display output?",
+            a: [
+                "scanf()",
+                "printf()",
+                "input()",
+                "display()"
+            ],
+            c: 1
+        },
+
+        {
+            q: "Which keyword is used for a constant variable?",
+            a: [
+                "constant",
+                "const",
+                "fixed",
+                "static"
+            ],
+            c: 1
+        },
+
+        {
+            q: "Which symbol terminates a C statement?",
+            a: [
+                ":",
+                ".",
+                ";",
+                ","
+            ],
             c: 2
         }
 
     ],
 
-
-
-    /* =====================================
-       DATA STRUCTURES
-    ====================================== */
 
     "Data Structures": [
 
         {
-            q: "What is the time complexity of inserting an element at the beginning of a singly linked list?",
-
-            a: [
-                "O(n)",
-                "O(log n)",
-                "O(1)",
-                "O(n log n)"
-            ],
-
-            c: 2
-        },
-
-
-        {
-            q: "Which data structure is best suited for checking balanced parentheses?",
-
+            q: "Which data structure follows LIFO?",
             a: [
                 "Queue",
                 "Stack",
-                "Linked List",
+                "Array",
+                "Tree"
+            ],
+            c: 1
+        },
+
+        {
+            q: "Which data structure follows FIFO?",
+            a: [
+                "Stack",
+                "Queue",
+                "Tree",
+                "Graph"
+            ],
+            c: 1
+        },
+
+        {
+            q: "Which data structure is used in BFS?",
+            a: [
+                "Stack",
+                "Queue",
+                "Tree",
                 "Heap"
             ],
-
             c: 1
         },
 
-
         {
-            q: "What is the worst-case time complexity of Binary Search?",
-
-            a: [
-                "O(1)",
-                "O(log n)",
-                "O(n)",
-                "O(n²)"
-            ],
-
-            c: 1
-        },
-
-
-        {
-            q: "Which tree traversal produces the nodes in sorted order for a Binary Search Tree?",
-
+            q: "Which traversal gives sorted order in a BST?",
             a: [
                 "Preorder",
                 "Inorder",
                 "Postorder",
-                "Level Order"
+                "Level order"
             ],
-
             c: 1
         },
 
+        {
+            q: "What is the time complexity of binary search?",
+            a: [
+                "O(n)",
+                "O(log n)",
+                "O(n²)",
+                "O(1)"
+            ],
+            c: 1
+        },
+
+        {
+            q: "Which data structure is used for balanced parentheses?",
+            a: [
+                "Queue",
+                "Stack",
+                "Graph",
+                "Array"
+            ],
+            c: 1
+        },
 
         {
             q: "A queue can be implemented using:",
-
             a: [
-                "Arrays only",
-                "Linked Lists only",
-                "Both Arrays and Linked Lists",
-                "Trees only"
+                "Array",
+                "Linked List",
+                "Both",
+                "Tree"
             ],
-
             c: 2
         },
 
-
         {
-            q: "In a max heap, where is the largest element located?",
-
+            q: "In a max heap, the largest element is at:",
             a: [
-                "At any leaf node",
-                "At the root",
-                "At the last node",
-                "In the middle level"
+                "Leaf",
+                "Root",
+                "Middle",
+                "Last"
             ],
-
             c: 1
         },
 
-
         {
-            q: "Which sorting algorithm is not stable?",
-
+            q: "Which algorithm is used for graph traversal?",
             a: [
-                "Merge Sort",
-                "Bubble Sort",
-                "Insertion Sort",
-                "Selection Sort"
+                "BFS",
+                "DFS",
+                "Both",
+                "None"
             ],
-
-            c: 3
+            c: 2
         },
 
-
         {
-            q: "Which data structure is used in Breadth-First Search (BFS)?",
-
+            q: "Which data structure stores elements in nodes connected by links?",
             a: [
+                "Array",
+                "Linked List",
                 "Stack",
-                "Queue",
-                "Heap",
-                "Linked List"
+                "Queue"
             ],
-
             c: 1
-        },
-
-
-        {
-            q: "What is the height of a binary tree with only one node?",
-
-            a: [
-                "-1",
-                "0",
-                "1",
-                "2"
-            ],
-
-            c: 1
-        },
-
-
-        {
-            q: "Push(10), Push(20), Pop(), Push(30), Pop(). What remains at the top?",
-
-            a: [
-                "10",
-                "20",
-                "30",
-                "Stack is empty"
-            ],
-
-            c: 0
         }
 
     ],
 
-
-
-    /* =====================================
-       JAVA
-    ====================================== */
 
     "Java": [
 
         {
-            q: "Java was invented by _____.",
-
+            q: "Who invented Java?",
             a: [
                 "James Gosling",
                 "Dennis Ritchie",
-                "Brian Kernighan",
-                "Martin Richards"
+                "Bjarne Stroustrup",
+                "Bill Gates"
             ],
-
             c: 0
         },
 
-
         {
-            q: "Which is the latest version of Java listed in the source questions?",
-
+            q: "JVM stands for:",
             a: [
-                "26.1.1",
-                "26.0.1",
-                "25.0.1",
-                "26.0"
+                "Java Virtual Machine",
+                "Java Variable Machine",
+                "Java Visual Machine",
+                "Java Virtual Method"
             ],
-
-            c: 1
+            c: 0
         },
 
+        {
+            q: "Which keyword creates an object?",
+            a: [
+                "object",
+                "create",
+                "new",
+                "make"
+            ],
+            c: 2
+        },
 
         {
-            q: "JVM stands for _________.",
-
+            q: "Which language is Java based on?",
             a: [
-                "Java Visual Machine",
-                "Java Variable Method",
-                "Java Virtual Monitor",
-                "Java Virtual Machine"
+                "C/C++",
+                "Python",
+                "PHP",
+                "HTML"
             ],
+            c: 0
+        },
 
-            c: 3
+        {
+            q: "Which method is the entry point of a Java program?",
+            a: [
+                "start()",
+                "main()",
+                "run()",
+                "execute()"
+            ],
+            c: 1
         }
 
     ],
 
 
-
-    /* =====================================
-       DBMS
-    ====================================== */
-
     "DBMS": [
 
         {
-            q: "DBMS stands for ________________.",
-
+            q: "DBMS stands for:",
             a: [
-                "DataBase Management Service",
-                "Data backup mapping System",
-                "DataBase Management System",
-                "DataBase Management Source"
+                "Database Management System",
+                "Database Machine System",
+                "Data Management Software",
+                "Database Managing Service"
             ],
-
-            c: 2
-        },
-
-
-        {
-            q: "Which key uniquely identifies a record in a table?",
-
-            a: [
-                "Primary key",
-                "Super key",
-                "Candidate key",
-                "Foreign key"
-            ],
-
             c: 0
         },
 
+        {
+            q: "Which key uniquely identifies a record?",
+            a: [
+                "Foreign Key",
+                "Primary Key",
+                "Candidate Key",
+                "Super Key"
+            ],
+            c: 1
+        },
 
         {
-            q: "Which SQL command is used to retrieve data?",
-
+            q: "Which SQL command retrieves data?",
             a: [
                 "INSERT",
                 "DELETE",
                 "SELECT",
                 "UPDATE"
             ],
-
             c: 2
         },
 
-
         {
-            q: "Which language is used to interact with database?",
-
+            q: "Which language is used to interact with databases?",
             a: [
-                "Java",
-                "Python",
-                "C++",
-                "SQL"
+                "HTML",
+                "CSS",
+                "SQL",
+                "XML"
             ],
-
-            c: 3
+            c: 2
         },
 
-
         {
-            q: "A row in table is also called tuple?",
-
+            q: "A row in a table is called:",
             a: [
-                "True",
-                "False"
+                "Attribute",
+                "Tuple",
+                "Field",
+                "Database"
             ],
-
-            c: 0
+            c: 1
         },
-
 
         {
             q: "Which normal form removes transitive dependency?",
-
             a: [
                 "1NF",
                 "2NF",
                 "3NF",
-                "BCNF"
+                "4NF"
             ],
-
             c: 2
         },
 
-
         {
-            q: "The process of organizing data to reduce redundancy is called _______.",
-
-            a: [
-                "Scheduling",
-                "Normalization",
-                "Serializibility",
-                "Transaction processing"
-            ],
-
-            c: 1
-        },
-
-
-        {
-            q: "Which statement is true?",
-
-            a: [
-                "Every super key is candidate key",
-                "Primary key can contain NULL values",
-                "Every candidate key is super key",
-                "Foreign key must be unique"
-            ],
-
-            c: 2
-        },
-
-
-        {
-            q: "What happens if DELETE FROM student; is executed without a WHERE clause?",
-
-            a: [
-                "Table is delete",
-                "Structure is delete",
-                "All records are deleted",
-                "An error occurs"
-            ],
-
-            c: 2
-        },
-
-
-        {
-            q: "A table can have how many primary key?",
-
-            a: [
-                "One",
-                "Two",
-                "Three",
-                "Zero"
-            ],
-
-            c: 0
-        },
-
-
-        {
-            q: "Which SQL command permanently removes a table and its structure?",
-
+            q: "Which command removes a table completely?",
             a: [
                 "DELETE",
                 "DROP",
-                "TRUNCATE",
-                "REMOVE"
+                "REMOVE",
+                "CLEAR"
             ],
-
             c: 1
         },
 
-
         {
-            q: "Which dependency is removed in 2NF?",
-
+            q: "Which command is used to add a new record?",
             a: [
-                "Functional dependency",
-                "Transitive dependency",
-                "Partial dependency",
-                "Multivalued dependency"
+                "INSERT",
+                "UPDATE",
+                "SELECT",
+                "CREATE"
             ],
-
-            c: 2
-        },
-
-
-        {
-            q: "Which of the following is TRUE?",
-
-            a: [
-                "A primary key can be NULL",
-                "A foreign key must be unique",
-                "A table can have multiple candidate keys",
-                "A table can have multiple primary keys"
-            ],
-
-            c: 2
-        },
-
-
-        {
-            q: "Which of the following is NOT an ACID property?",
-
-            a: [
-                "Atomicity",
-                "Consistency",
-                "Integrity",
-                "Durability"
-            ],
-
-            c: 2
-        },
-
-
-        {
-            q: "Every serial schedule is:",
-
-            a: [
-                "Concurrent",
-                "Recoverable",
-                "Serializable",
-                "Non-recoverable"
-            ],
-
-            c: 2
-        },
-
-
-        {
-            q: "A REVOKE command is used in______.",
-
-            a: [
-                "DML",
-                "DCL",
-                "DDL",
-                "TCL"
-            ],
-
-            c: 1
-        },
-
-
-        {
-            q: "Which statement is TRUE?",
-
-            a: [
-                "SELECT is a DDL command",
-                "COMMIT is a DML command",
-                "DROP is a DDL command",
-                "GRANT is a TCL command"
-            ],
-
-            c: 2
-        },
-
-
-        {
-            q: "DELETE FROM Student;",
-
-            a: [
-                "Delete the student table",
-                "Delete all records from the Student table",
-                "Delete the table structure",
-                "Display all records"
-            ],
-
-            c: 1
-        },
-
-
-        {
-            q: "Which query is used to display all columns of a table?",
-
-            a: [
-                "SELECT*FROM student;",
-                "SELECT FROM Student;",
-                "SELECT ALL Student;",
-                "DISPLAY Student;"
-            ],
-
             c: 0
         },
 
+        {
+            q: "Which SQL command modifies existing data?",
+            a: [
+                "UPDATE",
+                "SELECT",
+                "DROP",
+                "CREATE"
+            ],
+            c: 0
+        },
 
         {
-            q: "Which command belongs to DCL?",
-
+            q: "Which of the following is an ACID property?",
             a: [
-                "COMMIT",
-                "REVOKE",
-                "UPDATE",
-                "TRUNCATE"
+                "Atomicity",
+                "Availability",
+                "Accuracy",
+                "Accessibility"
             ],
-
-            c: 1
+            c: 0
         }
 
     ]
@@ -1042,9 +668,157 @@ const QUESTIONS = {
 };
 
 
-/* =========================================
+
+/* =====================================================
+   QUIZ CONFIGURATION
+===================================================== */
+
+let selectedCategory =
+    "C Programming";
+
+let selectedCount =
+    10;
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        /* CATEGORY BUTTONS */
+
+        document
+            .querySelectorAll("[data-category]")
+            .forEach(function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        document
+                            .querySelectorAll(
+                                "[data-category]"
+                            )
+                            .forEach(function (item) {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            });
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        selectedCategory =
+                            button.dataset.category;
+
+                    }
+                );
+
+            });
+
+
+        /* QUESTION COUNT */
+
+        document
+            .querySelectorAll("[data-count]")
+            .forEach(function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        document
+                            .querySelectorAll(
+                                "[data-count]"
+                            )
+                            .forEach(function (item) {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            });
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        selectedCount =
+                            Number(
+                                button.dataset.count
+                            );
+
+                    }
+                );
+
+            });
+
+
+        /* RESULT PAGE */
+
+        if (
+            document.getElementById("score")
+        ) {
+
+            showResult();
+
+        }
+
+
+        /* QUIZ PAGE */
+
+        if (
+            document.getElementById("question")
+        ) {
+
+            initializeQuiz();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   START QUIZ
+===================================================== */
+
+function startQuiz() {
+
+    const config = {
+
+        category:
+            selectedCategory,
+
+        count:
+            selectedCount
+
+    };
+
+
+    localStorage.setItem(
+        "brainBattleConfig",
+        JSON.stringify(config)
+    );
+
+
+    window.location.href =
+        "quiz.html";
+
+}
+
+
+
+/* =====================================================
    QUIZ VARIABLES
-========================================= */
+===================================================== */
 
 let quiz = [];
 
@@ -1056,25 +830,23 @@ let selectedAnswer = false;
 
 let timeLeft = 30;
 
-let timerInterval;
+let timer;
 
 
 
-/* =========================================
-   START QUIZ
-========================================= */
+/* =====================================================
+   INITIALIZE QUIZ
+===================================================== */
 
 function initializeQuiz() {
 
-    const config =
-        JSON.parse(
-            localStorage.getItem(
-                "brainBattleConfig"
-            )
+    const savedConfig =
+        localStorage.getItem(
+            "brainBattleConfig"
         );
 
 
-    if (!config) {
+    if (!savedConfig) {
 
         window.location.href =
             "config.html";
@@ -1084,32 +856,32 @@ function initializeQuiz() {
     }
 
 
-    let questionPool =
+    const config =
+        JSON.parse(savedConfig);
+
+
+    let questions =
         QUESTIONS[config.category];
 
 
-    if (!questionPool) {
+    if (!questions) {
 
-        questionPool =
+        questions =
             QUESTIONS["C Programming"];
 
     }
 
 
-    /*
-       Shuffle questions
-    */
+    /* Shuffle */
 
     quiz =
-        [...questionPool]
+        [...questions]
         .sort(
             () => Math.random() - 0.5
         );
 
 
-    /*
-       Select requested number
-    */
+    /* Number of questions */
 
     quiz =
         quiz.slice(
@@ -1121,19 +893,20 @@ function initializeQuiz() {
         );
 
 
-    /*
-       Category display
-    */
+    currentQuestion = 0;
 
-    const categoryLabel =
+    score = 0;
+
+
+    const category =
         document.getElementById(
             "categoryLabel"
         );
 
 
-    if (categoryLabel) {
+    if (category) {
 
-        categoryLabel.textContent =
+        category.textContent =
             config.category;
 
     }
@@ -1147,9 +920,9 @@ function initializeQuiz() {
 
 
 
-/* =========================================
+/* =====================================================
    SHOW QUESTION
-========================================= */
+===================================================== */
 
 function showQuestion() {
 
@@ -1158,7 +931,7 @@ function showQuestion() {
     timeLeft = 30;
 
 
-    const question =
+    const q =
         quiz[currentQuestion];
 
 
@@ -1182,32 +955,27 @@ function showQuestion() {
     ).style.width =
         (
             ((currentQuestion + 1) /
-            quiz.length) *
-            100
+            quiz.length) * 100
         ) + "%";
 
 
     document.getElementById(
         "question"
     ).textContent =
-        question.q;
+        q.q;
 
 
-    const answerBox =
+    const answers =
         document.getElementById(
             "answers"
         );
 
 
-    answerBox.innerHTML = "";
+    answers.innerHTML = "";
 
 
-    /*
-       Create options
-    */
-
-    question.a.forEach(
-        function(answer, index) {
+    q.a.forEach(
+        function (answer, index) {
 
             const button =
                 document.createElement(
@@ -1228,7 +996,7 @@ function showQuestion() {
 
 
             button.onclick =
-                function() {
+                function () {
 
                     selectAnswer(
                         index,
@@ -1238,7 +1006,7 @@ function showQuestion() {
                 };
 
 
-            answerBox.appendChild(
+            answers.appendChild(
                 button
             );
 
@@ -1246,11 +1014,7 @@ function showQuestion() {
     );
 
 
-    /*
-       Change button text
-    */
-
-    const nextButton =
+    const next =
         document.getElementById(
             "nextBtn"
         );
@@ -1261,12 +1025,12 @@ function showQuestion() {
         quiz.length - 1
     ) {
 
-        nextButton.textContent =
+        next.textContent =
             "Finish Quiz";
 
     } else {
 
-        nextButton.textContent =
+        next.textContent =
             "Next Question";
 
     }
@@ -1275,48 +1039,39 @@ function showQuestion() {
 
 
 
-/* =========================================
+/* =====================================================
    SELECT ANSWER
-========================================= */
+===================================================== */
 
 function selectAnswer(
-    selectedIndex,
-    selectedButton
+    index,
+    button
 ) {
 
     if (selectedAnswer) {
-
         return;
-
     }
 
 
     selectedAnswer = true;
 
 
-    const question =
-        quiz[currentQuestion];
+    const correct =
+        quiz[currentQuestion].c;
 
 
-    const allButtons =
+    const all =
         document.querySelectorAll(
             ".answer"
         );
 
 
-    /*
-       Show correct answer
-    */
+    all.forEach(
+        function (item, i) {
 
-    allButtons.forEach(
-        function(button, index) {
+            if (i === correct) {
 
-            if (
-                index ===
-                question.c
-            ) {
-
-                button.classList.add(
+                item.classList.add(
                     "correct"
                 );
 
@@ -1326,20 +1081,13 @@ function selectAnswer(
     );
 
 
-    /*
-       Check selected answer
-    */
-
-    if (
-        selectedIndex ===
-        question.c
-    ) {
+    if (index === correct) {
 
         score++;
 
     } else {
 
-        selectedButton.classList.add(
+        button.classList.add(
             "wrong"
         );
 
@@ -1349,15 +1097,11 @@ function selectAnswer(
 
 
 
-/* =========================================
+/* =====================================================
    NEXT QUESTION
-========================================= */
+===================================================== */
 
 function nextQuestion() {
-
-    /*
-       Don't allow next without answer
-    */
 
     if (!selectedAnswer) {
 
@@ -1373,10 +1117,6 @@ function nextQuestion() {
     currentQuestion++;
 
 
-    /*
-       Finish quiz
-    */
-
     if (
         currentQuestion >=
         quiz.length
@@ -1389,38 +1129,44 @@ function nextQuestion() {
     }
 
 
-    timeLeft = 30;
-
-
     showQuestion();
+
+    startTimer();
 
 }
 
 
 
-/* =========================================
+/* =====================================================
    TIMER
-========================================= */
+===================================================== */
 
 function startTimer() {
 
-    clearInterval(timerInterval);
+    clearInterval(timer);
 
 
-    const timer =
+    timeLeft = 30;
+
+
+    const timerElement =
         document.getElementById(
             "timer"
         );
 
 
-    timerInterval =
+    timerElement.textContent =
+        "00:30";
+
+
+    timer =
         setInterval(
-            function() {
+            function () {
 
                 timeLeft--;
 
 
-                timer.textContent =
+                timerElement.textContent =
                     "00:" +
                     String(
                         timeLeft
@@ -1430,88 +1176,33 @@ function startTimer() {
                     );
 
 
-                /*
-                   Time over
-                */
-
                 if (
                     timeLeft <= 0
                 ) {
 
-                    clearInterval(
-                        timerInterval
-                    );
+                    clearInterval(timer);
+
+
+                    selectedAnswer = true;
+
+
+                    currentQuestion++;
 
 
                     if (
-                        !selectedAnswer
+                        currentQuestion >=
+                        quiz.length
                     ) {
 
-                        selectedAnswer =
-                            true;
+                        finishQuiz();
 
+                    } else {
 
-                        const question =
-                            quiz[
-                                currentQuestion
-                            ];
+                        showQuestion();
 
-
-                        const buttons =
-                            document.querySelectorAll(
-                                ".answer"
-                            );
-
-
-                        buttons.forEach(
-                            function(
-                                button,
-                                index
-                            ) {
-
-                                if (
-                                    index ===
-                                    question.c
-                                ) {
-
-                                    button.classList.add(
-                                        "correct"
-                                    );
-
-                                }
-
-                            }
-                        );
+                        startTimer();
 
                     }
-
-
-                    setTimeout(
-                        function() {
-
-                            currentQuestion++;
-
-
-                            if (
-                                currentQuestion >=
-                                quiz.length
-                            ) {
-
-                                finishQuiz();
-
-                            } else {
-
-                                timeLeft = 30;
-
-                                showQuestion();
-
-                                startTimer();
-
-                            }
-
-                        },
-                        700
-                    );
 
                 }
 
@@ -1523,15 +1214,13 @@ function startTimer() {
 
 
 
-/* =========================================
+/* =====================================================
    FINISH QUIZ
-========================================= */
+===================================================== */
 
 function finishQuiz() {
 
-    clearInterval(
-        timerInterval
-    );
+    clearInterval(timer);
 
 
     const config =
@@ -1544,9 +1233,11 @@ function finishQuiz() {
 
     const result = {
 
-        score: score,
+        score:
+            score,
 
-        total: quiz.length,
+        total:
+            quiz.length,
 
         category:
             config.category
@@ -1555,11 +1246,8 @@ function finishQuiz() {
 
 
     localStorage.setItem(
-
         "brainBattleResult",
-
         JSON.stringify(result)
-
     );
 
 
@@ -1570,34 +1258,19 @@ function finishQuiz() {
 
 
 
-/* =========================================
-   RUN QUIZ
-========================================= */
-
-if (
-    document.getElementById(
-        "question"
-    )
-) {
-
-    initializeQuiz();
-
-}
-/* =========================================
-   RESULT PAGE
-========================================= */
+/* =====================================================
+   RESULT
+===================================================== */
 
 function showResult() {
 
-    const resultData =
+    const saved =
         localStorage.getItem(
             "brainBattleResult"
         );
 
 
-    /* If result not found */
-
-    if (!resultData) {
+    if (!saved) {
 
         window.location.href =
             "config.html";
@@ -1608,68 +1281,41 @@ function showResult() {
 
 
     const result =
-        JSON.parse(resultData);
-
-
-    const score =
-        result.score;
-
-    const total =
-        result.total;
+        JSON.parse(saved);
 
 
     const percentage =
         Math.round(
-            (score / total) * 100
+            (result.score /
+            result.total) * 100
         );
 
 
-    /* =====================================
-       CATEGORY
-    ====================================== */
-
-    const category =
-        document.getElementById(
-            "resultCategory"
-        );
+    document.getElementById(
+        "score"
+    ).textContent =
+        result.score +
+        "/" +
+        result.total;
 
 
-    if (category) {
-
-        category.textContent =
-            result.category +
-            " • " +
-            total +
-            " Questions";
-
-    }
+    document.getElementById(
+        "resultCategory"
+    ).textContent =
+        result.category;
 
 
+    document.getElementById(
+        "resultDetails"
+    ).textContent =
+        "You answered " +
+        result.score +
+        " correctly out of " +
+        result.total +
+        " questions. Score: " +
+        percentage +
+        "%";
 
-    /* =====================================
-       SCORE
-    ====================================== */
-
-    const scoreElement =
-        document.getElementById(
-            "score"
-        );
-
-
-    if (scoreElement) {
-
-        scoreElement.textContent =
-            score +
-            "/" +
-            total;
-
-    }
-
-
-
-    /* =====================================
-       MESSAGE
-    ====================================== */
 
     const message =
         document.getElementById(
@@ -1677,64 +1323,25 @@ function showResult() {
         );
 
 
-    if (percentage === 100) {
+    if (percentage >= 80) {
 
         message.textContent =
-            "Perfect Score! 🎉";
+            "Excellent Work! 🏆";
 
-    }
-
-    else if (percentage >= 80) {
+    } else if (percentage >= 60) {
 
         message.textContent =
-            "Excellent Work! 👏";
+            "Great Job! 🎉";
 
-    }
-
-    else if (percentage >= 60) {
+    } else if (percentage >= 40) {
 
         message.textContent =
-            "Great Job! 💪";
+            "Good Try! 💪";
 
-    }
-
-    else if (percentage >= 40) {
+    } else {
 
         message.textContent =
-            "Good Try! 📚";
-
-    }
-
-    else {
-
-        message.textContent =
-            "Keep Practicing! 🔥";
-
-    }
-
-
-
-    /* =====================================
-       RESULT DETAILS
-    ====================================== */
-
-    const details =
-        document.getElementById(
-            "resultDetails"
-        );
-
-
-    if (details) {
-
-        details.textContent =
-            "You answered " +
-            score +
-            " correctly out of " +
-            total +
-            " questions. " +
-            "Your score is " +
-            percentage +
-            "%.";
+            "Keep Practicing! 📚";
 
     }
 
@@ -1742,9 +1349,9 @@ function showResult() {
 
 
 
-/* =========================================
+/* =====================================================
    PLAY AGAIN
-========================================= */
+===================================================== */
 
 function playAgain() {
 
@@ -1754,30 +1361,13 @@ function playAgain() {
 }
 
 
-
-/* =========================================
-   GO HOME
-========================================= */
+/* =====================================================
+   HOME
+===================================================== */
 
 function goHome() {
 
     window.location.href =
         "index.html";
-
-}
-
-
-
-/* =========================================
-   LOAD RESULT
-========================================= */
-
-if (
-    document.getElementById(
-        "score"
-    )
-) {
-
-    showResult();
 
 }
